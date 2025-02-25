@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="assets/js/profile.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="assets/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="add" onclick="openModal() ">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <div class="addImgModal">
+        <div class="addInfoDiv">
+          <i onclick="closeModal()" class="fa-solid fa-xmark"></i>
+          <input type="text" class="newImg" placeholder="Your new img url..."/> 
+          <button onclick="addImgUser()">Add Image</button></div>
+      </div>
+      <nav>
+        <div class="nav_link">
+          <a onclick="userInfo()">My Profile</a>
+          <a onclick="showAllImages()">All Images</a>
+        </div>
+        <div class="user_info">
+          <p class="userTitle"></p>
+          <a onclick="logOut()">Log out</a>
+        </div>
+      </nav>
+
+      <div class="MyCards"></div>
+      <div class="AllCards"></div>
+    </div>
+  </body>
+</html>
+
+
