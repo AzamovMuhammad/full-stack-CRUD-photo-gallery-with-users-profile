@@ -62,7 +62,6 @@ function showUserImages(userId) {
       console.error("Error loading images:", err);
     });
 }
-
 async function getLikeCount(imageId) {
   try {
     const response = await axios.post(`http://localhost:4180/likes`, {
@@ -89,7 +88,6 @@ async function getLikeCount(imageId) {
     console.error("Error fetching like count:", error);
   }
 }
-
 function clickLikeButton(imageId) {
   axios
     .post("http://localhost:4180/like", {
@@ -104,8 +102,6 @@ function clickLikeButton(imageId) {
       console.error("Error liking image:", error);
     });
 }
-
-
 function showAllImages() {
   AllCards.style.display = "flex";
   MyCards.style.display = "none";
@@ -142,7 +138,6 @@ function showAllImages() {
     });
   });
 }
-
 async function getAllLikeCount(imageId) {
   try {
     const response = await axios.post(`http://localhost:4180/likes`, {
@@ -162,7 +157,6 @@ async function getAllLikeCount(imageId) {
     console.error("Error fetching like count:", error);
   }
 }
-
 function clickAllLikeButton(imageId) {
   axios.post("http://localhost:4180/like", {
     user_id: userData[0].id,
@@ -175,8 +169,6 @@ function clickAllLikeButton(imageId) {
     console.error("Error liking image:", error);
   });
 }
-
-
 // user uchun yangi rasm qo'shish
 function addImgUser() {
   const newImg = document.querySelector(".newImg").value;

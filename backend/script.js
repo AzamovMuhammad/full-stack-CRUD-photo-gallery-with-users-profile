@@ -139,7 +139,7 @@ app.get("/allimg", async (req, res) => {
   }
 });
 
-// 🔹 Postdagi like-lar sonini olish
+// Postdagi like-lar sonini olish
 app.post("/likes", async (req, res) => {
   const { images_id } = req.body;
   try {

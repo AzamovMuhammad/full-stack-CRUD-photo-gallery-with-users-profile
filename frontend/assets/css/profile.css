@@ -20,8 +20,8 @@
   bottom: 20px;
   right: 30px;
   border-radius: 50%;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: -webkit-linear-gradient(to right, #2b6eff, #6441ff);
+  background: linear-gradient(to right, #2b6eff, #6441ff);
   cursor: pointer;
 }
 .addImgModal {
@@ -71,8 +71,8 @@ nav {
   padding: 20px 0px;
   color: white;
   justify-content: space-between;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: -webkit-linear-gradient(to right, #2b6eff, #6441ff);
+  background: linear-gradient(to right, #2b6eff, #6441ff);
 }
 nav a {
   cursor: pointer;
