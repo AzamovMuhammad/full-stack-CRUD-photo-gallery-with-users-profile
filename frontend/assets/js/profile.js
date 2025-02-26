@@ -210,6 +210,4 @@ function openModal() {
   addImgModal.style.display = "flex";
 }
 
-
-
 userInfo();

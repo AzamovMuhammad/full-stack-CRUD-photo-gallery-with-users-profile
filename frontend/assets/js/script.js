@@ -1,6 +1,6 @@
 const userData = JSON.parse(localStorage.getItem("user"));
 if (userData) {
-  window.location.href = 'profile.html'
+  window.location.href = 'pages/profile.html'
 }
 
 
@@ -104,7 +104,7 @@ function LogInMessage() {
 
   login_message.style.display = "flex";
   setTimeout(() => {
-    window.location.href = "profile.html";
+    window.location.href = "pages/profile.html";
   }, 3000);
 }
 
