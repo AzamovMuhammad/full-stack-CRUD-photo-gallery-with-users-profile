@@ -198,6 +198,9 @@ function deleteImg(imgId) {
 if (!userData) {
   logOut();
 }
+function myFavouritesPage() {
+  window.location.href = '/pages/myFavourites.html'
+}
 function logOut() {
   localStorage.removeItem("user");
   window.location.href = "index.html";
