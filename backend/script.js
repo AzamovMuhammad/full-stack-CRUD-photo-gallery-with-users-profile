@@ -183,6 +183,26 @@ app.post("/like", async (req, res) => {
   }
 });
 
+app.post('/myFavourites', async (req, res) => {
+  const {user_id} = req.body;
+  try {
+    const result =  await pool.query(`SELECT 
+    likes.id, 
+    likes.user_id,
+    users.id,
+    users.firstname, 
+    users.lastname, 
+    images.id AS image_id, 
+    images.imageURL
+    FROM likes
+    INNER JOIN images ON likes.images_id = images.id
+    INNER JOIN users ON images.userid = users.id
+    where user_id = $1`, [user_id]);
+    res.json(result.rows)
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+})
 
 
 
