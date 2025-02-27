@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../assets/js/all_Images.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="nav_link">
+          <a onclick="myImages()">My Photos</a>
+          <a onclick="userInfo()">All Images</a>
+          <a onclick="myFavouritesPage()">My Favourites</a>
+        </div>
+        <div class="user_info">
+          <p class="userTitle"></p>
+          <a onclick="logOut()">Log out</a>
+        </div>
+      </nav>
+      <div class="AllCards"></div>
+    </div>
+  </body>
+</html>
