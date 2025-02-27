@@ -19,7 +19,7 @@ function showAllFavourites() {
   .then((res) => {
     const result = res.data
     console.log(result);
-    myFavCards.innerHTML += " "
+    myFavCards.innerHTML = ""
     result.map((favImg) => {
       myFavCards.innerHTML += `
       <div class="f-card">
@@ -42,6 +42,7 @@ function showAllFavourites() {
         </div>
       </div>
       `
+      getAllLikeCount(favImg.image_id)
     })
   })
 }
@@ -74,6 +75,7 @@ function clickAllLikeButton(imageId) {
     })
     .then((res) => {
       getAllLikeCount(imageId);
+      showAllFavourites()
     })
     .catch((error) => {
       console.error("Error liking image:", error);
