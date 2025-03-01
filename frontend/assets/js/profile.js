@@ -33,10 +33,10 @@ function showUserImages(userId) {
               <div class="social">
                   <div class="social-content"></div>
                   <div class="social-buttons">
-                      <span onclick="clickLikeButton(${img.id})">
-                          <i id="like_${img.id}" class="fa fa-thumbs-up"></i> 
+                      <div class="likeDiv">
+                          <i onclick="clickLikeButton(${img.id})" id="like_${img.id}" class="fa fa-thumbs-up"></i> 
                           <span id="likeSpan_${img.id}" class='likeSpan'>Like</span>
-                      </span>
+                      </div>
                       <span><i class="fa fa-comment"></i> Comment</span>
                       <span><i class="fa fa-share"></i> Share</span>
                       <span onclick="deleteImg(${img.id})">

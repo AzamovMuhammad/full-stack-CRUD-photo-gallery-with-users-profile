@@ -29,10 +29,10 @@ function showAllImages() {
           <div class="social">
             <div class="social-content"></div>
             <div class="social-buttons">
-              <span  onclick="clickAllLikeButton(${info.image_id})">
-                <i id="like_${info.image_id}" class="fa fa-thumbs-up"></i> 
+              <div class="likeDiv"  >
+                <i onclick="clickAllLikeButton(${info.image_id})" id="like_${info.image_id}" class="fa fa-thumbs-up"></i> 
                 <span id="likeSpan_${info.image_id}" class='likeSpan'>Like</span>
-              </span>
+              </div>
               <span><i class="fa fa-comment"></i>Comment</span>
               <span><i class="fa fa-share"></i>Share</span>
             </div>
