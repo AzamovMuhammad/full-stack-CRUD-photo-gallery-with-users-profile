@@ -42,7 +42,6 @@ function showAllImages() {
     });
     usersInfo.forEach((info) => {
       getAllLikeCount(info.image_id);
-      // console.log(info.image_id);
     });
   });
 }

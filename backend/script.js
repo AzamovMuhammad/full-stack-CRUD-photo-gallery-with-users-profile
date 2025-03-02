@@ -165,10 +165,10 @@ app.post("/like", async (req, res) => {
 
     if (likeCheck.rowCount > 0) {
       // Agar like bosgan bo‘lsa, o‘chiramiz (Unlike)
-      await pool.query("DELETE FROM likes WHERE user_id = $1 AND images_id = $2", [
-        user_id,
-        images_id,
-      ]);
+      await pool.query(
+        "DELETE FROM likes WHERE user_id = $1 AND images_id = $2",
+        [user_id, images_id]
+      );
       res.json({ message: "Unlike qildingiz", liked: false });
     } else {
       // Agar like bosmagan bo‘lsa, qo‘shamiz
@@ -183,10 +183,11 @@ app.post("/like", async (req, res) => {
   }
 });
 
-app.post('/myFavourites', async (req, res) => {
-  const {user_id} = req.body;
+app.post("/myFavourites", async (req, res) => {
+  const { user_id } = req.body;
   try {
-    const result =  await pool.query(`SELECT 
+    const result = await pool.query(
+      `SELECT 
     likes.id, 
     likes.user_id,
     users.id,
@@ -197,14 +198,35 @@ app.post('/myFavourites', async (req, res) => {
     FROM likes
     INNER JOIN images ON likes.images_id = images.id
     INNER JOIN users ON images.userid = users.id
-    where user_id = $1`, [user_id]);
-    res.json(result.rows)
+    where user_id = $1`,
+      [user_id]
+    );
+    res.json(result.rows);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-})
+});
 
-
+app.post("/clickedLikes", async (req, res) => {
+  const { image_id } = req.body;
+  try {
+    const result = await pool.query(
+      `SELECT 
+    likes.user_id,
+    users.firstname, 
+    users.lastname, 
+    images.id AS image_id
+    FROM likes
+    INNER JOIN images ON likes.images_id = images.id
+    INNER JOIN users ON likes.user_id = users.id
+    where images.id = $1`,
+      [image_id]
+    );
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 const port = 4180;
 app.listen(port, () => {
