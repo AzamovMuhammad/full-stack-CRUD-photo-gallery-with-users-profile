@@ -112,7 +112,13 @@ function clickAllLikeButton(imageId) {
       console.error("Error liking image:", error);
     });
 }
-
+if (!userData) {
+  logOut();
+}
+function logOut() {
+  localStorage.removeItem("user");
+  window.location.href = "../index.html";
+}
 function myImages() {
   window.location.href = "/pages/profile.html";
 }

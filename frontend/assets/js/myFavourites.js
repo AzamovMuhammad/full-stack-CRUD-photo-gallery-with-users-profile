@@ -115,6 +115,13 @@ function clickAllLikeButton(imageId) {
     });
 }
 
+if (!userData) {
+  logOut();
+}
+function logOut() {
+  localStorage.removeItem("user");
+  window.location.href = "../index.html";
+}
 
 function myImages() {
   window.location.href = "/pages/profile.html";
