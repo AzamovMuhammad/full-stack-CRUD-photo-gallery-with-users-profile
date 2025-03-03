@@ -31,10 +31,21 @@ function showAllImages() {
             <div class="social-buttons">
               <div class="likeDiv"  >
                 <i onclick="clickAllLikeButton(${info.image_id})" id="like_${info.image_id}" class="fa fa-thumbs-up"></i> 
-                <span id="likeSpan_${info.image_id}" class='likeSpan'>Like</span>
+                <span onclick="openImgModal(${info.image_id})" id="likeSpan_${info.image_id}" class='likeSpan'>Like</span>
               </div>
               <span><i class="fa fa-comment"></i>Comment</span>
               <span><i class="fa fa-share"></i>Share</span>
+              <div class="box">
+                <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
+                  <div class="modal">
+                    <h1 class="modal__title">Users who clicked like</h1>
+                    <div class="modal__text_div">
+                     
+                    </div>
+                    <a href="#m2-c" onclick="closeImgModal()" class="link-2"></a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -45,6 +56,30 @@ function showAllImages() {
     });
   });
 }
+
+
+function openImgModal(id) {
+  const modal__text_div = document.querySelector('.modal__text_div')
+  const modal_container = document.querySelector('.modal-container')
+  modal_container.style.display = 'flex'
+  axios.post(`http://localhost:4180/clickedLikes`, {
+    image_id:id
+  })
+  .then((res) => {
+    const result = res.data;
+    modal__text_div.innerHTML = ''
+    result.map((user) => {
+      modal__text_div.innerHTML += `
+      <p class="modal__text">${user.firstname} ${user.lastname}</p>
+      `
+    })
+  })
+}
+function closeImgModal() {
+  const modal_container = document.querySelector('.modal-container')
+  modal_container.style.display = 'none'
+}
+
 async function getAllLikeCount(imageId) {
   try {
     const response = await axios.post(`http://localhost:4180/likes`, {
