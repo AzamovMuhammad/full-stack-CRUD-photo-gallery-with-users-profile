@@ -16,7 +16,7 @@ function userInfo() {
 // rasmlarni ekranga chiqarish
 function showUserImages(userId) {
   axios
-    .post(`http://localhost:4180/imgs`, { id: userId })
+    .post(`http://localhost:4180/profile/imgs`, { id: userId })
     .then((res) => {
       const userImages = res.data;
       console.log(userImages);
@@ -76,7 +76,7 @@ function openImgModal(id) {
   const modal__text_div = document.querySelector('.modal__text_div')
   const modal_container = document.querySelector('.modal-container')
   modal_container.style.display = 'flex'
-  axios.post(`http://localhost:4180/clickedLikes`, {
+  axios.post(`http://localhost:4180/fav/clickedLikes`, {
     image_id:id
   })
   .then((res) => {
@@ -98,7 +98,7 @@ function closeImgModal() {
 
 async function getLikeCount(imageId) {
   try {
-    const response = await axios.post(`http://localhost:4180/likes`, {
+    const response = await axios.post(`http://localhost:4180/userLike/likes`, {
       images_id: imageId,
     });
 
@@ -124,7 +124,7 @@ async function getLikeCount(imageId) {
 }
 function clickLikeButton(imageId) {
   axios
-    .post("http://localhost:4180/like", {
+    .post("http://localhost:4180/userLike/like", {
       user_id: userData[0].id,
       images_id: imageId,
     })
@@ -141,7 +141,7 @@ function addImgUser() {
   const newImg = document.querySelector(".newImg").value;
   console.log(newImg);
   axios
-    .post(`http://localhost:4180/addImg`, {
+    .post(`http://localhost:4180/profile/addImg`, {
       imageurl: newImg,
       userid: userData[0].id,
     })
@@ -154,7 +154,7 @@ function addImgUser() {
 function deleteImg(imgId) {
   console.log(imgId);
   axios
-    .post(`http://localhost:4180/deleteImg`, {
+    .post(`http://localhost:4180/profile/deleteImg`, {
       id: imgId,
     })
     .then(() => {

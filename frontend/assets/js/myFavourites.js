@@ -13,7 +13,7 @@ function userInfo() {
 }
 
 function showAllFavourites() {
-  axios.post(`http://localhost:4180/myFavourites`, {
+  axios.post(`http://localhost:4180/fav/myFavourites`, {
     user_id: userData[0].id,
   })
   .then((res) => {
@@ -62,7 +62,7 @@ function openImgModal(id) {
   const modal__text_div = document.querySelector('.modal__text_div')
   const modal_container = document.querySelector('.modal-container')
   modal_container.style.display = 'flex'
-  axios.post(`http://localhost:4180/clickedLikes`, {
+  axios.post(`http://localhost:4180/fav/clickedLikes`, {
     image_id:id
   })
   .then((res) => {
@@ -82,7 +82,7 @@ function closeImgModal() {
 
 async function getAllLikeCount(imageId) {
   try {
-    const response = await axios.post(`http://localhost:4180/likes`, {
+    const response = await axios.post(`http://localhost:4180/userLike/likes`, {
       images_id: imageId,
     });
 
@@ -102,7 +102,7 @@ async function getAllLikeCount(imageId) {
 
 function clickAllLikeButton(imageId) {
   axios
-    .post("http://localhost:4180/like", {
+    .post("http://localhost:4180/userLike/like", {
       user_id: userData[0].id,
       images_id: imageId,
     })

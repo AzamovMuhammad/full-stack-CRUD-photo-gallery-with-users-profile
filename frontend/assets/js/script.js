@@ -28,7 +28,7 @@ function signup() {
     );
   } else {
     axios
-      .post(`http://localhost:4180/signup`, {
+      .post(`http://localhost:4180/user/signup`, {
         firstname: Firstname,
         lastname: Lastname,
         username: Username,
@@ -71,7 +71,7 @@ function login() {
     );
   } else {
     axios
-      .post(`http://localhost:4180/login`, {
+      .post(`http://localhost:4180/user/login`, {
         username: userN,
         password: passW,
       })

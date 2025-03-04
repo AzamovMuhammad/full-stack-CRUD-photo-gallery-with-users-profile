@@ -1,40 +1,29 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const pool = require("./config/db");
-const { allUserImg } = require("./controllers/allUserImgControllers");
-const { signup, login } = require("./controllers/userController");
-const { myFavImg, clikedLikeByUsers } = require("./controllers/myFavControllers");
-const { likesCount, likeCond } = require("./controllers/likesController");
-const {
-  addImgs,
-  deleteImages,
-  imgsUser,
-} = require("./controllers/myPhotosController");
+const enterRouter = require("./routes/userRoutes");
+const myPhotosRouter = require("./routes/myPhotosRoutes");
+const allImgRouter = require("./routes/allUserImgRouter");
+const likesRouter = require("./routes/likesRouter");
+const myFavRouter = require("./routes/myFavRouter");
 
 app.use(cors());
 app.use(express.json());
 
-app.post("/signup", signup);
+// log_in and sign_up pages
+app.use("/user", enterRouter)
 
-app.post("/login", login);
+// userning profile 
+app.use('/profile', myPhotosRouter)
 
-app.post("/imgs", imgsUser);
-
-app.post("/addImg", addImgs);
-
-app.post("/deleteImg", deleteImages);
-
-app.get("/allimg", allUserImg);
+// barcha userlar rasmlari
+app.use('/allUser', allImgRouter)
 
 // Postdagi like-lar sonini olish
-app.post("/likes", likesCount);
+app.use('/userLike', likesRouter)
 
-app.post("/like", likeCond);
-
-app.post("/myFavourites", myFavImg);
-
-app.post("/clickedLikes", clikedLikeByUsers);
+// barcha sahifa uchun qo'shimchalarmmo
+app.use('/fav', myFavRouter)
 
 const port = 4180;
 app.listen(port, () => {
