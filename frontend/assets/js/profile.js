@@ -95,47 +95,45 @@ function closeImgModal() {
 }
 
 
-
 async function getLikeCount(imageId) {
   try {
-    const response = await axios.post(`http://localhost:4180/userLike/likes`, {
+    const response = await axios.post("http://localhost:4180/userLike/likes", {
       images_id: imageId,
     });
-
     const likeCount = response.data.like_count || 0;
-
-    // ID bo‘yicha to‘g‘ri elementlarni olish
+    
     const likeSpan = document.getElementById(`likeSpan_${imageId}`);
-    const likeIcon = document.getElementById(`like_${imageId}`);
-
     if (likeSpan) {
       likeSpan.innerHTML = likeCount;
-    }
-
-    // Agar like soni 0 dan katta bo‘lsa, kok aks holda qora bo‘lsin
-    if (likeCount > 0) {
-      likeIcon.style.color = "blue";
-    } else {
-      likeIcon.style.color = "black";
     }
   } catch (error) {
     console.error("Error fetching like count:", error);
   }
 }
+
 function clickLikeButton(imageId) {
+  const likeIcon = document.getElementById(`like_${imageId}`);
+  if (!likeIcon) return;
+
+  // Rangni darhol o‘zgartirish (yaxshi UX uchun)
+  likeIcon.style.color = likeIcon.style.color === "blue" ? "black" : "blue";
+
   axios
     .post("http://localhost:4180/userLike/like", {
-      user_id: userData[0].id,
+      user_id: userData?.[0]?.id, // Xatolikdan qochish uchun optional chaining
       images_id: imageId,
     })
     .then((res) => {
       console.log("Like response:", res.data);
-      getLikeCount(imageId); // Like bosilgandan keyin yangilash
+      const boolLike = res.data.liked;
+      likeIcon.style.color = boolLike ? "blue" : "black";
+      getLikeCount(imageId); // Like sonini yangilash
     })
     .catch((error) => {
       console.error("Error liking image:", error);
     });
 }
+
 // user uchun yangi rasm qo'shish
 function addImgUser() {
   const newImg = document.querySelector(".newImg").value;
