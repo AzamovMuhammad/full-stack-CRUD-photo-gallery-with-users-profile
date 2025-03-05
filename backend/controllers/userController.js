@@ -1,4 +1,5 @@
 const pool = require('../config/db')
+const bcrypt = require('bcrypt')
 
 // sign up
 exports.signup = async (req, res) => {
@@ -12,9 +13,12 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ error: "Username already exists" });
     }
 
+    const salt = await bcrypt.genSalt(10)
+    const encryptedPassword = await bcrypt.hash(password, salt)
+
     const result = await pool.query(
       `INSERT INTO users (firstname, lastname, username, password) VALUES ($1,$2,$3,$4) RETURNING*`,
-      [firstname, lastname, username, password]
+      [firstname, lastname, username, encryptedPassword]
     );
     res.status(201).json({
       message: "Yangi foydalanuvchi qo'shildi.",
