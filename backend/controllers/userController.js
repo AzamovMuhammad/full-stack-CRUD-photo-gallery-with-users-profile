@@ -1,5 +1,6 @@
 const pool = require("../config/db");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
 
 // sign up
 exports.signup = async (req, res) => {
@@ -33,14 +34,6 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    // const userResult = await pool.query(
-    //   "SELECT * FROM users WHERE username = $1 AND password = $2",
-    //   [username, password]
-    // );
-
-    // if (userResult.rows.length === 0) {
-    //   return res.status(401).json({ error: "Username yoki parol noto‘g‘ri" });
-    // }
 
     const result = await pool.query(
       "SELECT * FROM users WHERE username = $1 limit 1",
@@ -61,7 +54,17 @@ exports.login = async (req, res) => {
         .json({ message: "Incorrect username or password" });
     }
 
-    res.json({user});
+    // Token generation
+    const token = jwt.sign(
+    {
+      userId: user.id,
+      username: user.username
+    },
+    "MEN SENGA BIR GAP AYTAMAN, HECH KIM BILMASIN",
+    {expiresIn: '10m'}
+  )
+
+    res.json({user, token});
   } catch (error) {
     console.log(error.message);
     res.status(500).send("Girgittonimizda nomaqbul nuqson yuzaga keldi.");

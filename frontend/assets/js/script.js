@@ -76,9 +76,12 @@ function login() {
         password: passW,
       })
       .then((response) => {
-        const user = response.data;
+        const user = response.data.user;
+        const token = response.data.token
         localStorage.setItem("user", JSON.stringify(user));
-        LogInMessage();
+        console.log(user);
+        console.log(token);
+        // LogInMessage();
       })
       .catch((err) => {
         if (err.response) {
