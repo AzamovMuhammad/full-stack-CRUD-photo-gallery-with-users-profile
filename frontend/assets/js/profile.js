@@ -18,7 +18,15 @@ function userInfo() {
 // rasmlarni ekranga chiqarish
 function showUserImages(userId) {
   axios
-    .post(`http://localhost:4180/profile/imgs`, { id: userId })
+    .post(
+      `http://localhost:4180/profile/imgs`,
+      { id: userId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((res) => {
       const userImages = res.data;
       console.log(userImages);
