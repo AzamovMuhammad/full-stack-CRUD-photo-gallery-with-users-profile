@@ -39,10 +39,10 @@ function showUserImages(userId) {
                           <i onclick="clickLikeButton(${img.id})" id="like_${img.id}" class="fa fa-thumbs-up"></i> 
                           <span onclick="openImgModal(${img.id})" id="likeSpan_${img.id}" class='likeSpan'>Like</span>
                       </div>
-                      <span><i class="fa fa-comment"></i> Comment</span>
-                      <span><i class="fa fa-share"></i> Share</span>
+                      <span><i class="fa fa-comment"></i></span>
+                      <span><i class="fa fa-share"></i></span>
                       <span onclick="deleteImg(${img.id})">
-                          <i class="fa-solid fa-trash-can"></i> Trash
+                          <i class="fa-solid fa-trash-can"></i>
                       </span>
                       <div class="box">
                       <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
@@ -140,10 +140,18 @@ function addImgUser() {
   const newImg = document.querySelector(".newImg").value;
   console.log(newImg);
   axios
-    .post(`http://localhost:4180/profile/addImg`, {
-      imageurl: newImg,
-      userid: userData.id,
-    })
+    .post(
+      `http://localhost:4180/profile/addImg`,
+      {
+        imageurl: newImg,
+        userid: userData.id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then(() => {
       closeModal();
       userInfo();

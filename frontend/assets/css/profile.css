@@ -191,6 +191,9 @@ nav a {
   text-shadow: 2px 2px 5px #000000;
 }
 
+.social-buttons span{
+  cursor: pointer;
+}
 .social-buttons span i{
   padding: 0px 5px;
 }

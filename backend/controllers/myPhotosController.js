@@ -23,6 +23,15 @@ exports.imgsUser = async (req, res) => {
 // add new images for user
 exports.addImgs = async (req, res) => {
   try {
+
+    const token = req.header("Authorization").split(" ")[1];
+
+    if (!token) {
+      return res.status(403).json({ message: "Token berilmadi" });
+    }
+
+    jwt.verify(token, "MEN SENGA BIR GAP AYTAMAN, HECH KIM BILMASIN");
+
     const { imageurl, userid } = req.body;
     const result = await pool.query(
       `INSERT INTO images (imageurl, userid) VALUES ($1, $2) returning*`,
