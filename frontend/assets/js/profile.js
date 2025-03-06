@@ -4,7 +4,9 @@ const MyCards = document.querySelector(".MyCards");
 const addImgModal = document.querySelector(".addImgModal");
 
 const userData = JSON.parse(localStorage.getItem("user"));
+const token = JSON.parse(localStorage.getItem("token"));
 console.log(userData);
+console.log(token);
 
 // user ismini navbarda ko'rsatish
 function userInfo() {
@@ -71,29 +73,28 @@ function showUserImages(userId) {
     });
 }
 
-
 function openImgModal(id) {
-  const modal__text_div = document.querySelector('.modal__text_div')
-  const modal_container = document.querySelector('.modal-container')
-  modal_container.style.display = 'flex'
-  axios.post(`http://localhost:4180/fav/clickedLikes`, {
-    image_id:id
-  })
-  .then((res) => {
-    const result = res.data;
-    modal__text_div.innerHTML = ''
-    result.map((user) => {
-      modal__text_div.innerHTML += `
-      <p class="modal__text">${user.firstname} ${user.lastname}</p>
-      `
+  const modal__text_div = document.querySelector(".modal__text_div");
+  const modal_container = document.querySelector(".modal-container");
+  modal_container.style.display = "flex";
+  axios
+    .post(`http://localhost:4180/fav/clickedLikes`, {
+      image_id: id,
     })
-  })
+    .then((res) => {
+      const result = res.data;
+      modal__text_div.innerHTML = "";
+      result.map((user) => {
+        modal__text_div.innerHTML += `
+      <p class="modal__text">${user.firstname} ${user.lastname}</p>
+      `;
+      });
+    });
 }
 function closeImgModal() {
-  const modal_container = document.querySelector('.modal-container')
-  modal_container.style.display = 'none'
+  const modal_container = document.querySelector(".modal-container");
+  modal_container.style.display = "none";
 }
-
 
 async function getLikeCount(imageId) {
   try {
@@ -101,7 +102,7 @@ async function getLikeCount(imageId) {
       images_id: imageId,
     });
     const likeCount = response.data.like_count || 0;
-    
+
     const likeSpan = document.getElementById(`likeSpan_${imageId}`);
     if (likeSpan) {
       likeSpan.innerHTML = likeCount;
@@ -120,7 +121,7 @@ function clickLikeButton(imageId) {
 
   axios
     .post("http://localhost:4180/userLike/like", {
-      user_id: userData?.[0]?.id, // Xatolikdan qochish uchun optional chaining
+      user_id: userData.id,
       images_id: imageId,
     })
     .then((res) => {
@@ -141,7 +142,7 @@ function addImgUser() {
   axios
     .post(`http://localhost:4180/profile/addImg`, {
       imageurl: newImg,
-      userid: userData[0].id,
+      userid: userData.id,
     })
     .then(() => {
       closeModal();
@@ -152,9 +153,17 @@ function addImgUser() {
 function deleteImg(imgId) {
   console.log(imgId);
   axios
-    .post(`http://localhost:4180/profile/deleteImg`, {
-      id: imgId,
-    })
+    .post(
+      `http://localhost:4180/profile/deleteImg`,
+      {
+        id: imgId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then(() => {
       userInfo();
     });
@@ -164,10 +173,10 @@ if (!userData) {
   logOut();
 }
 function myFavouritesPage() {
-  window.location.href = '/pages/myFavourites.html'
+  window.location.href = "/pages/myFavourites.html";
 }
 function allImagesShow() {
-  window.location.href = '/pages/all_Images.html'
+  window.location.href = "/pages/all_Images.html";
 }
 function logOut() {
   localStorage.removeItem("user");

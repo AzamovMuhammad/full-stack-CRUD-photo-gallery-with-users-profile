@@ -48,6 +48,8 @@ exports.deleteImages = async (req, res) => {
     }
 
     jwt.verify(token, "MEN SENGA BIR GAP AYTAMAN, HECH KIM BILMASIN");
+
+    // res.json({message: "Rasm o'chdi"})
     const { id } = req.body;
     const result = await pool.query(`DELETE FROM images WHERE id = $1`, [id]);
     res.status(200).json({

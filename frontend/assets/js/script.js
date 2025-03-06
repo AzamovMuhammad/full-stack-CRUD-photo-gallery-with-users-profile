@@ -1,8 +1,7 @@
 const userData = JSON.parse(localStorage.getItem("user"));
 if (userData) {
-  window.location.href = 'pages/profile.html'
+  window.location.href = "pages/profile.html";
 }
-
 
 const signUpButton = document.getElementById("signUp");
 const signInButton = document.getElementById("signIn");
@@ -77,21 +76,16 @@ function login() {
       })
       .then((response) => {
         const user = response.data.user;
-        const token = response.data.token
+        const token = response.data.token;
         localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("token", JSON.stringify(token))
         console.log(user);
         console.log(token);
         LogInMessage();
       })
       .catch((err) => {
         if (err.response) {
-          if (err.response.status === 401) {
-            showError();
-          } else {
-            alert(
-              "Ro'yxatdan o'tishda xatolik yuz berdi. Qaytadan urinib ko'ring."
-            );
-          }
+          showError();
         } else {
           alert(
             "Serverga ulanishda muammo bor. Iltimos, keyinroq urinib ko'ring."
