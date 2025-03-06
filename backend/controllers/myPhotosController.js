@@ -24,7 +24,7 @@ exports.imgsUser = async (req, res) => {
 exports.addImgs = async (req, res) => {
   try {
 
-    const token = req.header("Authorization").split(" ")[1];
+    const token = req.header("Authorization")?.split(" ")[1];
 
     if (!token) {
       return res.status(403).json({ message: "Token berilmadi" });
