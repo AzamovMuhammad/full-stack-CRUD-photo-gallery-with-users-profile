@@ -81,7 +81,7 @@ function login() {
         localStorage.setItem("user", JSON.stringify(user));
         console.log(user);
         console.log(token);
-        // LogInMessage();
+        LogInMessage();
       })
       .catch((err) => {
         if (err.response) {

@@ -4,14 +4,14 @@ const MyCards = document.querySelector(".MyCards");
 const addImgModal = document.querySelector(".addImgModal");
 
 const userData = JSON.parse(localStorage.getItem("user"));
-console.log(userData.user);
+console.log(userData);
 
 // user ismini navbarda ko'rsatish
 function userInfo() {
   userTitle.innerHTML = `
-        <span>${userData.user.firstname}</span> <span>${userData.user.lastname}</span>
+        <span>${userData.firstname}</span> <span>${userData.lastname}</span>
     `;
-  showUserImages(userData.user.id);
+  showUserImages(userData.id);
 }
 // rasmlarni ekranga chiqarish
 function showUserImages(userId) {

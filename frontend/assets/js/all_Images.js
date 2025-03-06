@@ -7,7 +7,7 @@ const AllCards = document.querySelector(".AllCards");
 // user ismini navbarda ko'rsatish
 function userInfo() {
   userTitle.innerHTML = `
-        <span>${userData[0].firstname}</span> <span>${userData[0].lastname}</span>
+        <span>${userData.firstname}</span> <span>${userData.lastname}</span>
     `;
   showAllImages();
 }
@@ -102,7 +102,7 @@ async function getAllLikeCount(imageId) {
 function clickAllLikeButton(imageId) {
   axios
     .post("http://localhost:4180/userLike/like", {
-      user_id: userData[0].id,
+      user_id: userData.id,
       images_id: imageId,
     })
     .then((res) => {
