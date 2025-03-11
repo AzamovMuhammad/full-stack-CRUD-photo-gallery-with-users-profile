@@ -7,8 +7,10 @@ const allImgRouter = require("./routes/allUserImgRouter");
 const likesRouter = require("./routes/likesRouter");
 const myFavRouter = require("./routes/myFavRouter");
 
+// middlewere
 app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"))
 
 // log_in and sign_up pages
 app.use("/user", enterRouter)

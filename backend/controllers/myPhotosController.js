@@ -10,7 +10,10 @@ exports.imgsUser = async (req, res) => {
       id,
     ]);
     if (result.rows.length != 0) {
-      return res.json(result.rows);
+      const photos = result.rows.map(photo => {
+        return {...photo, url: 'http://localhost:4180/' + photo.filepath}
+      })
+      return res.json(photos);
     } else {
       return res.json({ message: "serverda hatolik" });
     }
@@ -23,10 +26,11 @@ exports.imgsUser = async (req, res) => {
 // add new images for user
 exports.addImgs = async (req, res) => {
   try {
-    const { imageurl, userid } = req.body;
+    const { userid } = req.body;
+    const filepath = req.file.path;
     const result = await pool.query(
-      `INSERT INTO images (imageurl, userid) VALUES ($1, $2) returning*`,
-      [imageurl, userid]
+      `INSERT INTO images (filepath, userid) VALUES ($1, $2) returning*`,
+      [filepath, userid]
     );
     res.status(201).json({
       message: "Yangi rasm qo'shildi.",

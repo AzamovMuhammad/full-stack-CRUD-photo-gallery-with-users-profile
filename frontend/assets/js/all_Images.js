@@ -14,8 +14,9 @@ function userInfo() {
 
 function showAllImages() {
   axios.get(`http://localhost:4180/allUser/allimg`).then((res) => {
-    const usersInfo = res.data.user;
-    console.log(usersInfo);
+    const usersInfo = res.data;
+    const userData = JSON.stringify(usersInfo)
+    console.log( userData );
     AllCards.innerHTML = " ";
     usersInfo.map((info) => {
       AllCards.innerHTML += `
@@ -24,7 +25,7 @@ function showAllImages() {
             <div class="co-name">${info.firstname} ${info.lastname}</div>
           </div>
           <div class="reference">
-            <img class="reference-thumb" src="${info.imageurl}" />
+            <img class="reference-thumb" src="${info.url}" />
           </div>
           <div class="social">
             <div class="social-content"></div>

@@ -34,11 +34,11 @@ function showUserImages(userId) {
 
       let cardsHTML = ""; // HTML string yaratish
 
-      userImages.forEach((img) => {
+      userImages.map((img) => {
         cardsHTML += `
           <div class="f-card">
               <div class="reference">
-                  <img class="reference-thumb" src="${img.imageurl}" />
+                  <img class="reference-thumb" src="${img.url}" />
               </div>
               <div class="social">
                   <div class="social-content"></div>
@@ -150,7 +150,10 @@ function addImgUser() {
 
   const formData = new FormData();
   formData.append("photo", file)
-  formData.append("userId", userData.id)
+  formData.append("userid", userData.id)
+
+  console.log(userData.id);
+  console.log(file);
 
   axios
     .post(
