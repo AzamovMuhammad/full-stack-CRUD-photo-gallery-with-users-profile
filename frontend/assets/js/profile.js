@@ -145,18 +145,21 @@ function clickLikeButton(imageId) {
 
 // user uchun yangi rasm qo'shish
 function addImgUser() {
-  const newImg = document.querySelector(".newImg").value;
-  console.log(newImg);
+  const fileInput = document.getElementById('photo')
+  const file = fileInput.files[0]
+
+  const formData = new FormData();
+  formData.append("photo", file)
+  formData.append("userId", userData.id)
+
   axios
     .post(
       `http://localhost:4180/profile/addImg`,
-      {
-        imageurl: newImg,
-        userid: userData.id,
-      },
+      formData,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Content-Type' : 'multipart/form-data',
+          Authorization : `Bearer ${token}`,
         },
       }
     )
@@ -165,6 +168,7 @@ function addImgUser() {
       userInfo();
     });
 }
+
 // rasmlarni o'chirib yuborish
 function deleteImg(imgId) {
   console.log(imgId);
