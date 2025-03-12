@@ -2,6 +2,18 @@ const pool = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 
+exports.getInfo = async (req, res) => {
+  try {
+    const userExists = await pool.query(
+      "select * from users"
+    )
+    res.json(userExists)
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Girgittonimizda nomaqbul nuqson yuzaga keldi.");
+  }
+}
+
 // sign up
 exports.signup = async (req, res) => {
   try {
