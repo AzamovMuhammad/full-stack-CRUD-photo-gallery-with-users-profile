@@ -5,8 +5,8 @@ const addImgModal = document.querySelector(".addImgModal");
 
 const userData = JSON.parse(localStorage.getItem("user"));
 const token = JSON.parse(localStorage.getItem("token"));
-console.log(userData);
-console.log(token);
+// console.log(userData);
+// console.log(token);
 
 // user ismini navbarda ko'rsatish
 function userInfo() {
@@ -29,7 +29,7 @@ function showUserImages(userId) {
     )
     .then((res) => {
       const userImages = res.data;
-      console.log(userImages);
+      // console.log(userImages);
       MyCards.innerHTML = ""; // HTML tozalash
 
       let cardsHTML = ""; // HTML string yaratish
@@ -38,7 +38,7 @@ function showUserImages(userId) {
         cardsHTML += `
           <div class="f-card">
               <div class="reference">
-                  <img class="reference-thumb" src="${img.imageurl}" />
+                  <img class="reference-thumb" src="${img.filepath}" />
               </div>
               <div class="social">
                   <div class="social-content"></div>

@@ -18,7 +18,7 @@ exports.allUserImg = async (req, res) => {
       console.log("Query executed successfully:", result.rows);
 
       const photos = result.rows.map(photo => {
-          return {...photo, url: 'https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com//' + photo.filepath}
+          return {...photo, url: 'https://full-stack-crud-photo-gallery-with-users.onrender.com//' + photo.filepath}
       });
 
       res.status(200).json(photos);
