@@ -18,7 +18,14 @@ exports.myFavImg = async (req, res) => {
       where user_id = $1`,
       [user_id]
     );
-    res.json(result.rows);
+    if (result.rows.length != 0) {
+      const photos = result.rows.map(photo => {
+        return {...photo, url: 'https://full-stack-crud-photo-gallery-with-users.onrender.com//' + photo.filepath}
+      })
+      return res.json(photos);
+    } else {
+      return res.json({ message: "serverda hatolik" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

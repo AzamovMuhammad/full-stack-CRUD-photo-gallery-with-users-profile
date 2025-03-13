@@ -29,7 +29,7 @@ function showUserImages(userId) {
     )
     .then((res) => {
       const userImages = res.data;
-      // console.log(userImages);
+      console.log(userImages);
       MyCards.innerHTML = ""; // HTML tozalash
 
       let cardsHTML = ""; // HTML string yaratish
@@ -38,7 +38,7 @@ function showUserImages(userId) {
         cardsHTML += `
           <div class="f-card">
               <div class="reference">
-                  <img class="reference-thumb" src="${img.filepath}" />
+                  <img class="reference-thumb" src="${img.url}" />
               </div>
               <div class="social">
                   <div class="social-content"></div>

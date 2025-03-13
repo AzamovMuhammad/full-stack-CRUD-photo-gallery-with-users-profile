@@ -31,7 +31,7 @@ function showAllFavourites() {
           <div class="co-name">${favImg.firstname} ${favImg.lastname}</div>
         </div>
         <div class="reference">
-          <img class="reference-thumb" src="${favImg.imageurl}" />
+          <img class="reference-thumb" src="${favImg.filepath}" />
         </div>
         <div class="social">
           <div class="social-content"></div>
