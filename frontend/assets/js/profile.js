@@ -19,7 +19,7 @@ function userInfo() {
 function showUserImages(userId) {
   axios
     .post(
-      `http://localhost:4180/profile/imgs`,
+      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/imgs`,
       { id: userId },
       {
         headers: {
@@ -38,7 +38,7 @@ function showUserImages(userId) {
         cardsHTML += `
           <div class="f-card">
               <div class="reference">
-                  <img class="reference-thumb" src="${img.url}" />
+                  <img class="reference-thumb" src="${img.imageurl}" />
               </div>
               <div class="social">
                   <div class="social-content"></div>
@@ -86,7 +86,7 @@ function openImgModal(id) {
   const modal_container = document.querySelector(".modal-container");
   modal_container.style.display = "flex";
   axios
-    .post(`http://localhost:4180/fav/clickedLikes`, {
+    .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/fav/clickedLikes`, {
       image_id: id,
     })
     .then((res) => {
@@ -106,7 +106,7 @@ function closeImgModal() {
 
 async function getLikeCount(imageId) {
   try {
-    const response = await axios.post("http://localhost:4180/userLike/likes", {
+    const response = await axios.post("https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/likes", {
       images_id: imageId,
     });
     const likeCount = response.data.like_count || 0;
@@ -128,7 +128,7 @@ function clickLikeButton(imageId) {
   likeIcon.style.color = likeIcon.style.color === "blue" ? "black" : "blue";
 
   axios
-    .post("http://localhost:4180/userLike/like", {
+    .post("https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/like", {
       user_id: userData.id,
       images_id: imageId,
     })
@@ -157,7 +157,7 @@ function addImgUser() {
 
   axios
     .post(
-      `http://localhost:4180/profile/addImg`,
+      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/addImg`,
       formData,
       {
         headers: {
@@ -177,7 +177,7 @@ function deleteImg(imgId) {
   console.log(imgId);
   axios
     .post(
-      `http://localhost:4180/profile/deleteImg`,
+      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/deleteImg`,
       {
         id: imgId,
       },

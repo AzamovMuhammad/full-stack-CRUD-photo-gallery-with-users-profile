@@ -27,7 +27,7 @@ function signup() {
     );
   } else {
     axios
-      .post(`http://localhost:4180/user/signup`, {
+      .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/signup`, {
         firstname: Firstname,
         lastname: Lastname,
         username: Username,
@@ -70,7 +70,7 @@ function login() {
     );
   } else {
     axios
-      .post(`http://localhost:4180/user/login`, {
+      .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/user/login`, {
         username: userN,
         password: passW,
       })
