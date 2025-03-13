@@ -9,14 +9,5 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const uploadMiddleware = (req, res, next) => {
-  upload.single("photo")(req, res, (err) => {
-    if (err) {
-      console.error("Multer error:", err);
-      return res.status(500).json({ error: "File upload failed" });
-    }
-    console.log("File uploaded successfully:", req.file);
-    next();
-  });
-};
+const uploadMiddleware = upload.single("photo");
 module.exports = uploadMiddleware;
