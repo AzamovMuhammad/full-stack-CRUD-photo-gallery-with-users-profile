@@ -1,5 +1,5 @@
-const { json } = require("express");
 const pool = require("../config/db");
+const { json } = require("express");
 
 
 // getting user's photos
