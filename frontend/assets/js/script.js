@@ -27,12 +27,15 @@ function signup() {
     );
   } else {
     axios
-      .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/signup`, {
-        firstname: Firstname,
-        lastname: Lastname,
-        username: Username,
-        password: Password,
-      })
+      .post(
+        `https://full-stack-crud-photo-gallery-with-users.onrender.com/signup`,
+        {
+          firstname: Firstname,
+          lastname: Lastname,
+          username: Username,
+          password: Password,
+        }
+      )
       .then((res) => {
         signUpMessage();
       })
@@ -70,15 +73,18 @@ function login() {
     );
   } else {
     axios
-      .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/user/login`, {
-        username: userN,
-        password: passW,
-      })
+      .post(
+        `https://full-stack-crud-photo-gallery-with-users.onrender.com/user/login`,
+        {
+          username: userN,
+          password: passW,
+        }
+      )
       .then((response) => {
         const user = response.data.user;
         const token = response.data.token;
         localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("token", JSON.stringify(token))
+        localStorage.setItem("token", JSON.stringify(token));
         console.log(user);
         console.log(token);
         LogInMessage();

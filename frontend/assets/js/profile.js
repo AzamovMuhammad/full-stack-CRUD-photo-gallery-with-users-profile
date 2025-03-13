@@ -19,7 +19,7 @@ function userInfo() {
 function showUserImages(userId) {
   axios
     .post(
-      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/imgs`,
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/profile/imgs`,
       { id: userId },
       {
         headers: {
@@ -86,9 +86,12 @@ function openImgModal(id) {
   const modal_container = document.querySelector(".modal-container");
   modal_container.style.display = "flex";
   axios
-    .post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/fav/clickedLikes`, {
-      image_id: id,
-    })
+    .post(
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/fav/clickedLikes`,
+      {
+        image_id: id,
+      }
+    )
     .then((res) => {
       const result = res.data;
       modal__text_div.innerHTML = "";
@@ -106,9 +109,12 @@ function closeImgModal() {
 
 async function getLikeCount(imageId) {
   try {
-    const response = await axios.post("https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/likes", {
-      images_id: imageId,
-    });
+    const response = await axios.post(
+      "https://full-stack-crud-photo-gallery-with-users.onrender.com/userLike/likes",
+      {
+        images_id: imageId,
+      }
+    );
     const likeCount = response.data.like_count || 0;
 
     const likeSpan = document.getElementById(`likeSpan_${imageId}`);
@@ -128,10 +134,13 @@ function clickLikeButton(imageId) {
   likeIcon.style.color = likeIcon.style.color === "blue" ? "black" : "blue";
 
   axios
-    .post("https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/like", {
-      user_id: userData.id,
-      images_id: imageId,
-    })
+    .post(
+      "https://full-stack-crud-photo-gallery-with-users.onrender.com/userLike/like",
+      {
+        user_id: userData.id,
+        images_id: imageId,
+      }
+    )
     .then((res) => {
       console.log("Like response:", res.data);
       const boolLike = res.data.liked;
@@ -145,24 +154,24 @@ function clickLikeButton(imageId) {
 
 // user uchun yangi rasm qo'shish
 function addImgUser() {
-  const fileInput = document.getElementById('photo')
-  const file = fileInput.files[0]
+  const fileInput = document.getElementById("photo");
+  const file = fileInput.files[0];
 
   const formData = new FormData();
-  formData.append("photo", file)
-  formData.append("userid", userData.id)
+  formData.append("photo", file);
+  formData.append("userid", userData.id);
 
   console.log(userData.id);
   console.log(file);
 
   axios
     .post(
-      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/addImg`,
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/profile/addImg`,
       formData,
       {
         headers: {
-          'Content-Type' : 'multipart/form-data',
-          Authorization : `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
         },
       }
     )
@@ -177,7 +186,7 @@ function deleteImg(imgId) {
   console.log(imgId);
   axios
     .post(
-      `https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/profile/deleteImg`,
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/profile/deleteImg`,
       {
         id: imgId,
       },
@@ -215,14 +224,3 @@ function openModal() {
 }
 
 userInfo();
-
-
-
-
-
-
-
-
-
-
-

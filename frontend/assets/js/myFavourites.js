@@ -9,19 +9,23 @@ function userInfo() {
   userTitle.innerHTML = `
         <span>${userData.firstname}</span> <span>${userData.lastname}</span>
     `;
-    showAllFavourites()
+  showAllFavourites();
 }
 
 function showAllFavourites() {
-  axios.post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/fav/myFavourites`, {
-    user_id: userData.id,
-  })
-  .then((res) => {
-    const result = res.data
-    console.log(result);
-    myFavCards.innerHTML = ""
-    result.map((favImg) => {
-      myFavCards.innerHTML += `
+  axios
+    .post(
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/fav/myFavourites`,
+      {
+        user_id: userData.id,
+      }
+    )
+    .then((res) => {
+      const result = res.data;
+      console.log(result);
+      myFavCards.innerHTML = "";
+      result.map((favImg) => {
+        myFavCards.innerHTML += `
       <div class="f-card">
         <div class="header">
           <div class="co-name">${favImg.firstname} ${favImg.lastname}</div>
@@ -52,39 +56,46 @@ function showAllFavourites() {
           </div>
         </div>
       </div>
-      `
-      getAllLikeCount(favImg.image_id)
-    })
-  })
+      `;
+        getAllLikeCount(favImg.image_id);
+      });
+    });
 }
 
 function openImgModal(id) {
-  const modal__text_div = document.querySelector('.modal__text_div')
-  const modal_container = document.querySelector('.modal-container')
-  modal_container.style.display = 'flex'
-  axios.post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/fav/clickedLikes`, {
-    image_id:id
-  })
-  .then((res) => {
-    const result = res.data;
-    modal__text_div.innerHTML = ''
-    result.map((user) => {
-      modal__text_div.innerHTML += `
+  const modal__text_div = document.querySelector(".modal__text_div");
+  const modal_container = document.querySelector(".modal-container");
+  modal_container.style.display = "flex";
+  axios
+    .post(
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/fav/clickedLikes`,
+      {
+        image_id: id,
+      }
+    )
+    .then((res) => {
+      const result = res.data;
+      modal__text_div.innerHTML = "";
+      result.map((user) => {
+        modal__text_div.innerHTML += `
       <p class="modal__text">${user.firstname} ${user.lastname}</p>
-      `
-    })
-  })
+      `;
+      });
+    });
 }
 function closeImgModal() {
-  const modal_container = document.querySelector('.modal-container')
-  modal_container.style.display = 'none'
+  const modal_container = document.querySelector(".modal-container");
+  modal_container.style.display = "none";
 }
 
 async function getAllLikeCount(imageId) {
   try {
-    const response = await axios.post(`https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/likes`, {
-      images_id: imageId,
-    });
+    const response = await axios.post(
+      `https://full-stack-crud-photo-gallery-with-users.onrender.com/userLike/likes`,
+      {
+        images_id: imageId,
+      }
+    );
 
     const likeCount = response.data.like_count || 0;
 
@@ -102,13 +113,16 @@ async function getAllLikeCount(imageId) {
 
 function clickAllLikeButton(imageId) {
   axios
-    .post("https://full-stack-crud-photo-gallery-with-users-2va3.onrender.com/userLike/like", {
-      user_id: userData.id,
-      images_id: imageId,
-    })
+    .post(
+      "https://full-stack-crud-photo-gallery-with-users.onrender.com/userLike/like",
+      {
+        user_id: userData.id,
+        images_id: imageId,
+      }
+    )
     .then((res) => {
       getAllLikeCount(imageId);
-      showAllFavourites()
+      showAllFavourites();
     })
     .catch((error) => {
       console.error("Error liking image:", error);

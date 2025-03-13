@@ -11,7 +11,7 @@ exports.myFavImg = async (req, res) => {
       users.firstname, 
       users.lastname, 
       images.id AS image_id, 
-      images.imageURL
+      images.filepath
       FROM likes
       INNER JOIN images ON likes.images_id = images.id
       INNER JOIN users ON images.userid = users.id
