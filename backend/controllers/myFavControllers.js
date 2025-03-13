@@ -20,7 +20,7 @@ exports.myFavImg = async (req, res) => {
     );
     if (result.rows.length != 0) {
       const photos = result.rows.map(photo => {
-        return {...photo, url: 'https://full-stack-crud-photo-gallery-with-users.onrender.com//' + photo.filepath}
+        return {...photo, url: 'https://full-stack-crud-photo-gallery-with-users.onrender.com/' + photo.filepath}
       })
       return res.json(photos);
     } else {
