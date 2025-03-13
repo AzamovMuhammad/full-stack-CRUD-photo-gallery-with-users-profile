@@ -19,46 +19,44 @@ function showAllImages() {
     .then((res) => {
       const usersInfo = res.data;
       console.log(usersInfo);
-      const userData = JSON.stringify(usersInfo);
-      console.log(userData);
-      // AllCards.innerHTML = " ";
-      // usersInfo.map((info) => {
-      //   AllCards.innerHTML += `
-      //     <div class="f-card">
-      //       <div class="header">
-      //         <div class="co-name">${info.firstname} ${info.lastname}</div>
-      //       </div>
-      //       <div class="reference">
-      //         <img class="reference-thumb" src="${info.url}" />
-      //       </div>
-      //       <div class="social">
-      //         <div class="social-content"></div>
-      //         <div class="social-buttons">
-      //           <div class="likeDiv"  >
-      //             <i onclick="clickAllLikeButton(${info.image_id})" id="like_${info.image_id}" class="fa fa-thumbs-up"></i>
-      //             <span onclick="openImgModal(${info.image_id})" id="likeSpan_${info.image_id}" class='likeSpan'>Like</span>
-      //           </div>
-      //           <span><i class="fa fa-comment"></i>Comment</span>
-      //           <span><i class="fa fa-share"></i>Share</span>
-      //           <div class="box">
-      //             <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
-      //               <div class="modal">
-      //                 <h1 class="modal__title">Users who clicked like</h1>
-      //                 <div class="modal__text_div">
+      AllCards.innerHTML = " ";
+      usersInfo.map((info) => {
+        AllCards.innerHTML += `
+          <div class="f-card">
+            <div class="header">
+              <div class="co-name">${info.firstname} ${info.lastname}</div>
+            </div>
+            <div class="reference">
+              <img class="reference-thumb" src="${info.url}" />
+            </div>
+            <div class="social">
+              <div class="social-content"></div>
+              <div class="social-buttons">
+                <div class="likeDiv"  >
+                  <i onclick="clickAllLikeButton(${info.image_id})" id="like_${info.image_id}" class="fa fa-thumbs-up"></i>
+                  <span onclick="openImgModal(${info.image_id})" id="likeSpan_${info.image_id}" class='likeSpan'>Like</span>
+                </div>
+                <span><i class="fa fa-comment"></i>Comment</span>
+                <span><i class="fa fa-share"></i>Share</span>
+                <div class="box">
+                  <div class="modal-container" id="m2-o" style="--m-background: hsla(0, 0%, 0%, .4);">
+                    <div class="modal">
+                      <h1 class="modal__title">Users who clicked like</h1>
+                      <div class="modal__text_div">
 
-      //                 </div>
-      //                 <a href="#m2-c" onclick="closeImgModal()" class="link-2"></a>
-      //               </div>
-      //             </div>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //     `;
-      // });
-      // usersInfo.forEach((info) => {
-      //   getAllLikeCount(info.image_id);
-      // });
+                      </div>
+                      <a href="#m2-c" onclick="closeImgModal()" class="link-2"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
+      });
+      usersInfo.forEach((info) => {
+        getAllLikeCount(info.image_id);
+      });
     });
 }
 
