@@ -10,22 +10,22 @@ const myFavRouter = require("./routes/myFavRouter");
 // middlewere
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads"))
 
 // log_in and sign_up pages
-app.use("/user", enterRouter)
+app.use("/user", enterRouter);
 
-// userning profile 
-app.use('/profile', myPhotosRouter)
+// userning profile
+app.use("/profile", myPhotosRouter);
+app.use("/uploads", express.static("uploads"));
 
 // barcha userlar rasmlari
-app.use('/allUser', allImgRouter)
+app.use("/allUser", allImgRouter);
 
 // Postdagi like-lar sonini olish
-app.use('/userLike', likesRouter)
+app.use("/userLike", likesRouter);
 
 // barcha sahifa uchun qo'shimchalarmmo
-app.use('/fav', myFavRouter)
+app.use("/fav", myFavRouter);
 
 const port = 4180;
 app.listen(port, () => {
