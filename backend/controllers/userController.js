@@ -75,7 +75,7 @@ exports.login = async (req, res) => {
     "MEN SENGA BIR GAP AYTAMAN, HECH KIM BILMASIN",
     {expiresIn: '10m'}
   )
-
+  
     res.json({user, token});
   } catch (error) {
     console.log(error.message);

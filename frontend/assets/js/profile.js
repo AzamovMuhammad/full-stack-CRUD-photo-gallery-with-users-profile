@@ -172,7 +172,7 @@ function addImgUser() {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
-        },
+        }
       }
     )
     .then(() => {
@@ -204,16 +204,16 @@ function deleteImg(imgId) {
 if (!userData) {
   logOut();
 }
+function logOut() {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  window.location.href = "../index.html";
+}
 function myFavouritesPage() {
   window.location.href = "/pages/myFavourites.html";
 }
 function allImagesShow() {
   window.location.href = "/pages/all_Images.html";
-}
-function logOut() {
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
-  window.location.href = "../index.html";
 }
 // modalni ochib yopish
 function closeModal() {
