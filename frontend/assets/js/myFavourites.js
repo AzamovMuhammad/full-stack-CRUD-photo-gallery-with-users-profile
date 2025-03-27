@@ -126,7 +126,7 @@ function clickAllLikeButton(imageId) {
     })
     .catch((error) => {
       console.error("Error liking image:", error);
-    });
+    });c
 }
 
 if (!userData) {
